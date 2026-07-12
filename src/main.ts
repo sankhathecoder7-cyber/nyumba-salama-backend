@@ -12,9 +12,13 @@ async function bootstrap() {
 
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
 
-  // ✅ CORS - Inaruhusu ports zote za development
+  // ✅ CORS - Production Frontend (Netlify)
   app.enableCors({
-    origin: true, // Inaruhusu origins zote (rahisi kwa development)
+    origin: [
+      'https://nyumbasalama-frontend.netlify.app',
+      // unaweza kuongeza localhost kwa testing
+      'http://localhost:3000',
+    ],
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization', 'Accept'],
@@ -34,8 +38,10 @@ async function bootstrap() {
   app.setGlobalPrefix('api');
 
   const port = process.env.PORT || 8000;
+
   await app.listen(port);
-  console.log(`NyumbaSalama API running on http://localhost:${port}/api`);
+
+  console.log(`NyumbaSalama API running on port ${port}/api`);
   console.log(`Serving static files from: ${uploadsDir}`);
 }
 
