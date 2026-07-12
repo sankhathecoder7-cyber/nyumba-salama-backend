@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "description": "NyumbaSalama Backend API - NestJS",
   "scripts": {
-    "build": "nest build",
+    "build": "npx nest build",
     "start": "node dist/main",
-    "start:dev": "nest start --watch",
-    "start:debug": "nest start --debug --watch",
+    "start:dev": "npx nest start --watch",
+    "start:debug": "npx nest start --debug --watch",
     "start:prod": "node dist/main",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix"
   },
