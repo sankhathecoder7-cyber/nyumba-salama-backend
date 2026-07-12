@@ -1,0 +1,24 @@
+
+node_modules/
+
+# Environment variables
+.env
+.env.*
+
+# Build
+dist/
+
+# Database
+*.db
+*.db-shm
+*.db-wal
+
+# Uploads
+uploads/
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db

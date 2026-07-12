@@ -1,0 +1,72 @@
+export const DAR_ES_SALAAM_UNIVERSITIES = [
+  'UDSM',
+  'ARU',
+  'MUHAS',
+  'DIT',
+  'CBE',
+  'IFM',
+  'DUCE',
+  'TIA',
+  'NIT',
+  'OUT',
+  'SJUIT',
+  'KIU',
+  'MNMA',
+  'UoB',
+  'BOTH',
+] as const;
+
+export type University = (typeof DAR_ES_SALAAM_UNIVERSITIES)[number];
+
+export const UNIVERSITY_LABELS: Record<string, string> = {
+  UDSM: 'University of Dar es Salaam',
+  ARU: 'Ardhi University',
+  MUHAS: 'Muhimbili University of Health and Allied Sciences',
+  DIT: 'Dar es Salaam Institute of Technology',
+  CBE: 'College of Business Education',
+  IFM: 'Institute of Finance Management',
+  DUCE: 'Dar es Salaam University College of Education',
+  TIA: 'Tanzania Institute of Accountancy',
+  NIT: 'National Institute of Transport',
+  OUT: 'Open University of Tanzania',
+  SJUIT: 'St Joseph University Tanzania',
+  KIU: 'Kampala International University Dar Campus',
+  MNMA: 'Mwalimu Nyerere Memorial Academy',
+  UoB: 'University of Bagamoyo Dar Campus',
+  BOTH: 'All Universities',
+};
+
+export const UNIVERSITY_SHORT_LABELS: Record<string, string> = {
+  UDSM: 'UDSM',
+  ARU: 'ARU',
+  MUHAS: 'MUHAS',
+  DIT: 'DIT',
+  CBE: 'CBE',
+  IFM: 'IFM',
+  DUCE: 'DUCE',
+  TIA: 'TIA',
+  NIT: 'NIT',
+  OUT: 'OUT',
+  SJUIT: 'SJUIT',
+  KIU: 'KIU',
+  MNMA: 'MNMA',
+  UoB: 'UoB',
+  BOTH: 'All',
+};
+
+export const UNIVERSITY_KEYWORDS: Record<string, string[]> = {
+  UDSM: ['udsm', 'mlimani', 'dar es salaam university', 'chuo kikuu cha dar', 'dar university'],
+  ARU: ['aru', 'ardhi', 'ardhi university', 'chuo cha ardhi'],
+  MUHAS: ['muhas', 'muhimbili', 'afya', 'health science', 'medical university', 'chuo cha afya'],
+  DIT: ['dit', 'dar institute', 'institute of technology', 'chuo cha ufundi'],
+  CBE: ['cbe', 'college of business', 'business education', 'chuo cha biashara'],
+  IFM: ['ifm', 'institute of finance', 'finance management', 'chuo cha fedha'],
+  DUCE: ['duce', 'dar college of education', 'chuo cha ualimu dar'],
+  TIA: ['tia', 'tanzania institute of accountancy', 'chuo cha uhasibu'],
+  NIT: ['nit', 'national institute of transport', 'chuo cha usafirishaji'],
+  OUT: ['out', 'open university', 'chuo kikuu huria'],
+  SJUIT: ['sjuit', 'st joseph', 'joseph university', 'chuo cha st joseph'],
+  KIU: ['kiu', 'kampala international', 'kampala university'],
+  MNMA: ['mnma', 'mwalimu nyerere', 'nyerere memorial', 'chuo cha nyerere'],
+  UoB: ['uob', 'bagamoyo', 'university of bagamoyo', 'chuo cha bagamoyo'],
+};
