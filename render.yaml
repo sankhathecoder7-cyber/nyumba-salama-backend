@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: nyumba-salama-backend
+    runtime: node
+    repo: https://github.com/sankhathecoder7-cyber/nyumba-salama-backend
+    plan: free
+    branch: main
+    buildCommand: npm cache clean --force && npm install && npx nest build
+    startCommand: node dist/main
+    envVars:
+      - key: PORT
+        value: 10000
+      - key: NODE_ENV
+        value: production
+      - key: DATABASE_URL
+        value: file:./dev.db
+      - key: JWT_SECRET
+        value: nyumbasalama-super-secret-key-change-in-production
+      - key: GROQ_API_KEY
+        value: your_groq_api_key
