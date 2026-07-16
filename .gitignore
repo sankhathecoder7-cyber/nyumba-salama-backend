@@ -1,4 +1,3 @@
-
 node_modules/
 
 # Environment variables
@@ -7,6 +6,11 @@ node_modules/
 
 # Build
 dist/
+
+# Python
+.venv/
+__pycache__/
+*.pyc
 
 # Database
 *.db
