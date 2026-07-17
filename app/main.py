@@ -37,12 +37,12 @@ app = FastAPI(
 # ============================================
 # CORS CONFIGURATION - FIXED!
 # ============================================
-# Hardcoded origins for Render deployment
 ALLOWED_ORIGINS = [
     "https://darcampus.netlify.app",
+    "https://nyumbasalama-frontend.netlify.app",
     "http://localhost:3000",
     "http://localhost:8000",
-    "https://nyumbasalama-backend.onrender.com"
+    "https://nyumba-salama-api.onrender.com"
 ]
 
 # Try to use settings if available, fallback to hardcoded
@@ -94,22 +94,17 @@ app.mount(
 )
 
 
-# ============================================
 # ROUTERS - Already have prefixes in their files
-# ============================================
-app.include_router(auth.router)  # prefix="/api/auth" inside
-app.include_router(users.router)  # prefix="/api/users" inside
-app.include_router(properties.router)  # prefix="/api/properties" inside
-app.include_router(videos.router)  # prefix="/api/videos" inside
-app.include_router(reviews.router)  # prefix="/api/reviews" inside
-app.include_router(favorites.router)  # prefix="/api/favorites" inside
-app.include_router(chatbot.router)  # prefix="/api/chatbot" inside
-app.include_router(admin.router)  # prefix="/api/admin" inside
+app.include_router(auth.router)
+app.include_router(users.router)
+app.include_router(properties.router)
+app.include_router(videos.router)
+app.include_router(reviews.router)
+app.include_router(favorites.router)
+app.include_router(chatbot.router)
+app.include_router(admin.router)
 
 
-# ============================================
-# ROOT ENDPOINT
-# ============================================
 @app.get("/")
 def root():
     return {
@@ -119,9 +114,6 @@ def root():
     }
 
 
-# ============================================
-# HEALTH CHECK ENDPOINT
-# ============================================
 @app.get("/api/health")
 def health_check():
     return {
