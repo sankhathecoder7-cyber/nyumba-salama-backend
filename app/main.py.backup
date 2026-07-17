@@ -37,7 +37,6 @@ app = FastAPI(
 # ============================================
 # CORS CONFIGURATION - FIXED!
 # ============================================
-# Hardcoded origins for Render deployment
 ALLOWED_ORIGINS = [
     "https://darcampus.netlify.app",
     "http://localhost:3000",
@@ -45,18 +44,9 @@ ALLOWED_ORIGINS = [
     "https://nyumbasalama-backend.onrender.com"
 ]
 
-# Try to use settings if available, fallback to hardcoded
-try:
-    if hasattr(settings, 'ALLOWED_ORIGINS') and settings.ALLOWED_ORIGINS:
-        origins = settings.ALLOWED_ORIGINS.split(",")
-    else:
-        origins = ALLOWED_ORIGINS
-except:
-    origins = ALLOWED_ORIGINS
-
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,
+    allow_origins=ALLOWED_ORIGINS,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -94,22 +84,17 @@ app.mount(
 )
 
 
-# ============================================
-# ROUTERS - Already have prefixes in their files
-# ============================================
-app.include_router(auth.router)  # prefix="/api/auth" inside
-app.include_router(users.router)  # prefix="/api/users" inside
-app.include_router(properties.router)  # prefix="/api/properties" inside
-app.include_router(videos.router)  # prefix="/api/videos" inside
-app.include_router(reviews.router)  # prefix="/api/reviews" inside
-app.include_router(favorites.router)  # prefix="/api/favorites" inside
-app.include_router(chatbot.router)  # prefix="/api/chatbot" inside
-app.include_router(admin.router)  # prefix="/api/admin" inside
+# Routers - ADDED PREFIXES
+app.include_router(auth.router, prefix="/api/auth", tags=["Authentication"])
+app.include_router(users.router, prefix="/api/users", tags=["Users"])
+app.include_router(properties.router, prefix="/api/properties", tags=["Properties"])
+app.include_router(videos.router, prefix="/api/videos", tags=["Videos"])
+app.include_router(reviews.router, prefix="/api/reviews", tags=["Reviews"])
+app.include_router(favorites.router, prefix="/api/favorites", tags=["Favorites"])
+app.include_router(chatbot.router, prefix="/api/chatbot", tags=["Chatbot"])
+app.include_router(admin.router, prefix="/api/admin", tags=["Admin"])
 
 
-# ============================================
-# ROOT ENDPOINT
-# ============================================
 @app.get("/")
 def root():
     return {
@@ -119,15 +104,12 @@ def root():
     }
 
 
-# ============================================
-# HEALTH CHECK ENDPOINT
-# ============================================
 @app.get("/api/health")
 def health_check():
     return {
         "status": "healthy",
         "cors": "enabled",
-        "cors_origins": origins if isinstance(origins, list) else origins.split(",")
+        "allowed_origins": ALLOWED_ORIGINS
     }
 
 
@@ -136,6 +118,6 @@ if __name__ == "__main__":
     uvicorn.run(
         "app.main:app",
         host="0.0.0.0",
-        port=settings.PORT if hasattr(settings, 'PORT') else 8000,
+        port=settings.PORT,
         reload=True
     )
