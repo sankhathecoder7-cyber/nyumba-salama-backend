@@ -35,10 +35,10 @@ app = FastAPI(
 
 
 # ============================================
-# CORS CONFIGURATION - FIXED!
+# CORS CONFIGURATION - FIXED WITH FRONTEND URL
 # ============================================
 ALLOWED_ORIGINS = [
-    "https://darcampus.netlify.app",
+    "https://darcampus.netlify.app",  # ← YOUR FRONTEND
     "https://nyumbasalama-frontend.netlify.app",
     "http://localhost:3000",
     "http://localhost:8000",
